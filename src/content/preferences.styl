@@ -1,0 +1,625 @@
+/* - This Source Code Form is subject to the terms of the Mozilla Public
+	 - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+	 - You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+.main-content {
+	padding-top: 0 $i;
+}
+
+#preferences-body {
+	--main-pane-width: 800px $i;
+}
+
+#mainPrefPane {
+	width: 100% $i;
+	padding: 0 $i;
+	font: message-box $i;
+	font-size: 1.25rem $i;
+}
+
+description.indent,
+.indent > description {
+	font-size: 1.18rem $i;
+	color: #737373 $i;
+}
+
+* {
+	user-select: text $i;
+}
+
+button,
+treecol,
+html|option {
+	/* override the * rule */
+	user-select: none $i;
+}
+
+@css {
+	#engineList treechildren::-moz-tree-image(engineShown, checked),
+	#blocklistsTree treechildren::-moz-tree-image(selectionCol, checked) {
+		list-style-image: url("../icons/content/in-content/check.svg") $i;
+		-moz-context-properties: fill, stroke $i;
+		fill: #2292d0 $i;
+		stroke: none $i;
+		width: 21px $i;
+		height: 21px $i;
+	}
+
+	#engineList treechildren::-moz-tree-image(engineShown, checked, selected),
+	#blocklistsTree treechildren::-moz-tree-image(selectionCol, checked, selected) {
+		fill: white $i;
+		stroke: #0095dd $i;
+	}
+
+	#engineList treechildren::-moz-tree-row,
+	#blocklistsTree treechildren::-moz-tree-row {
+		min-height: 36px $i;
+	}
+}
+
+#selectionCol {
+	min-width: 26px $i;
+}
+
+.learnMore {
+	margin-inline-start: 10px $i;
+	font-weight: normal $i;
+	white-space: nowrap $i;
+}
+
+.accessory-button {
+	min-width: 145px $i;
+}
+
+/* Subcategory title */
+
+/**
+ * The first subcategory title for each category should not have margin-top.
+ */
+#generalCategory,
+#firefoxHomeCategory,
+#searchCategory,
+#browserPrivacyCategory,
+#firefoxAccountCategory,
+#firefoxExperimentalCategory,
+#moreFromMozillaCategory-header {
+	margin-top: 0 $i;
+}
+
+.subcategory {
+	padding: 0 $i;
+	border: none $i;
+	margin-top: 48px $i;
+}
+
+/* header */
+.header:not([hidden]) {
+	display: flex $i;
+	align-items: center $i;
+	justify-content: space-between $i;
+}
+
+h1 {
+	font-size: 2rem $i;
+	font-weight: normal $i;
+	line-height: 40px $i;
+	margin: 0 $i;
+	user-select: none $i;
+}
+
+/* General Pane */
+
+#startupTable {
+	border-collapse: collapse $i;
+}
+
+#startupTable > tr > td {
+	padding: 0 $i; /* remove the padding from html.css */
+}
+
+#startupTable > tr:not(:first-child) > td {
+	padding-top: 0.5em $i; /* add a spacing between the rows */
+}
+
+#startupTable > tr > .label-cell {
+	text-align: end $i;
+	width: 0 $i; /* make the column as small as possible */
+}
+
+#startupTable > tr > .label-cell > label {
+	white-space: nowrap $i;
+}
+
+#startupTable > tr > .content-cell > menulist,
+#startupTable > tr > .content-cell > textbox {
+	width: calc(100% - 8px) $i;
+	margin-left: 4px $i;
+	margin-right: 4px $i;
+}
+
+#startupTable > tr > .homepage-buttons {
+	display: flex $i;
+	flex-wrap: wrap $i;
+}
+
+#startupTable > tr > .homepage-buttons > .content-cell-item {
+	flex-grow: 1 $i;
+}
+
+#useFirefoxSync	{
+	font-size: 90% $i;
+	margin-inline-end: 8px $i;
+}
+
+#getStarted {
+	font-size: 90% $i;
+}
+
+#isNotDefaultLabel {
+	font-weight: bold $i;
+}
+
+#downloadFolder {
+	margin-inline-start: 0 $i;
+}
+
+#browserHomePage:-moz-locale-dir(rtl) input {
+	unicode-bidi: plaintext $i;
+	direction: rtl $i;
+}
+
+#defaultFontSizeLabel {
+	/* needed to override common rule */
+	margin-inline-start: 4px $i;
+}
+
+/* Applications Pane Styles */
+
+#filter {
+	margin-inline-start: 0 $i;
+}
+
+#handlersView {
+	height: 25em $i;
+}
+
+#handlersView > richlistitem {
+	min-height: 36px $i;
+}
+
+.typeIcon {
+	margin-inline-start: 10px $i;
+	margin-inline-end: 9px $i;
+}
+
+.actionIcon {
+	margin-inline-start: 11px $i;
+	margin-inline-end: 8px $i;
+}
+
+.actionsMenu {
+	min-height: 36px $i;
+}
+
+.actionsMenu > menupopup > menuitem {
+	padding-inline-start: 10px $i;
+}
+
+.actionsMenu > menupopup > menuitem > .menu-iconic-left {
+	margin-inline-end: 8px $i;
+}
+
+/* Privacy pane */
+
+.doNotTrackLearnMore {
+	margin-inline-start: calc(1em + 30px) $i;
+	margin-bottom: 1em $i;
+	font-weight: normal $i;
+}
+
+.doNotTrackLearnMore > label {
+	font-size: 1em $i;
+	margin-left: 0 $i;
+}
+
+#doNotTrackLearnMoreBox {
+	margin-top: 30px
+}
+
+#trackingProtectionAdvancedSettings {
+	margin-inline-start: 15px $i;
+}
+
+/* Collapse the non-active vboxes in decks to use only the height the
+	 active vbox needs */
+#historyPane:not([selectedIndex="1"]) > #historyDontRememberPane,
+#historyPane:not([selectedIndex="2"]) > #historyCustomPane,
+#weavePrefsDeck:not([selectedIndex="1"]) > #hasFxaAccount,
+#fxaLoginStatus:not([selectedIndex="1"]) > #fxaLoginUnverified,
+#fxaLoginStatus:not([selectedIndex="2"]) > #fxaLoginRejected {
+	visibility: collapse $i;
+}
+
+description > checkbox {
+	vertical-align: middle $i;
+}
+
+#weavePrefsDeck > vbox > label,
+#weavePrefsDeck > vbox > groupbox,
+#weavePrefsDeck > vbox > description,
+#weavePrefsDeck > #hasFxaAccount > vbox > label,
+#weavePrefsDeck > #hasFxaAccount > hbox > label {
+	/* no margin-inline-start for elements at the beginning of a line */
+	margin-inline-start: 0 $i;
+}
+
+groupbox {
+	/* Give more available space for displaying tooltip on scrollable groupbox */
+	margin-top: 15px $i;
+}
+
+#tabsElement {
+	margin-inline-end: 4px $i; /* add the 4px end-margin of other elements */
+}
+
+.indent {
+	/* needed to override margin-inline-start:0 $i; rule
+		 define in common.css for labels */
+	margin-inline-start: 33px $i;
+}
+
+.text-link {
+	margin-bottom: 0 $i;
+}
+
+#showUpdateHistory {
+	margin-inline-start: 0 $i;
+}
+
+/**
+ * Font dialog menulist fixes
+ */
+
+#defaultFontType,
+#serif,
+#sans-serif,
+#monospace {
+	min-width: 30ch $i;
+}
+
+/**
+ * Sync
+ */
+
+#fxaProfileImage {
+	width: 60px $i;
+	height: 60px $i;
+	border-radius: 50% $i;
+	list-style-image: url(../icons/browser/fxa/default-avatar.svg) $i;
+	margin-inline-end: 15px $i;
+	image-rendering: auto $i;
+	border: 1px solid transparent $i;
+}
+
+#fxaLoginStatus[hasName] #fxaProfileImage {
+	width: 80px $i;
+	height: 80px $i;
+}
+
+#fxaProfileImage.actionable {
+	cursor: pointer $i;
+}
+
+#fxaProfileImage.actionable:hover {
+	border-color: #0095DD $i;
+}
+
+#fxaProfileImage.actionable:hover:active {
+	border-color: #ff9500 $i;
+}
+
+#noFxaAccount {
+	padding-top: 15px $i;
+}
+
+#fxaContentWrapper {
+	flex-flex: 1 $i;
+}
+
+#noFxaGroup {
+	flex-flex: 1 $i;
+	margin: 0 $i;
+}
+
+#fxaContentWrapper {
+	padding-right: 15px $i;
+}
+
+#noFxaGroup > vbox,
+#fxaGroup {
+	flex-align: start $i;
+}
+
+#fxaSyncEngines > vbox:first-child {
+	margin-right: 80px $i;
+}
+
+#fxaSyncComputerName {
+	margin-inline-start: 0px $i;
+	flex-flex: 1 $i;
+}
+
+#tosPP-small-ToS {
+	margin-bottom: 14px $i;
+}
+
+#noFxaCaption {
+	font-weight: bold $i;
+	margin-bottom: 11px $i;
+}
+
+.fxaSyncIllustration {
+	list-style-image: url("../icons/chrome/browser/fxa/sync-illustration.svg") $i $i;
+	-moz-context-properties: fill $i;
+	fill: #bfcbd3 $i;
+	margin-top: 35px $i;
+	width: 231px $i;
+}
+
+#syncOptions caption {
+	margin-bottom: 11px $i;
+}
+
+#fxaDeviceName {
+	margin-bottom: 27.5px $i;
+}
+
+#noFxaDescription {
+	margin-bottom: 20px $i;
+}
+
+.separator {
+	border-bottom: 1px solid var(--in-content-header-border-color) $i;
+}
+
+.fxaAccountBox {
+	border: 1px solid #D1D2D3 $i;
+	border-radius: 5px $i;
+	padding: 14px 20px 14px 14px $i;
+}
+
+#signedOutAccountBoxTitle {
+	font-weight: bold $i;
+}
+
+.fxaAccountBoxButtons {
+	margin-bottom: 0 $i;
+	margin-top: 11px $i;
+	display: flex $i;
+	align-items: center $i;
+}
+
+.fxaAccountBoxButtons > * {
+	flex-flex: 1 $i;
+}
+
+.fxaAccountBoxButtons > button {
+	text-align: center $i;
+	padding-left: 11px $i;
+	padding-right: 11px $i;
+	margin: 0 $i;
+	min-width: 0 $i;
+}
+
+.fxaAccountBoxButtons > button:first-child {
+	margin-inline-end: 14px $i;
+}
+
+#verifiedManage:visited {
+	color: var(--in-content-link-color) $i;
+}
+
+#fxaLoginStatus[hasName] #fxaEmailAddress1 {
+	font-size: 1.1rem $i;
+}
+
+#fxaEmailAddress1,
+#fxaEmailAddress2,
+#fxaEmailAddress3 {
+	word-break: break-all $i;
+}
+
+.fxaFirefoxLogo {
+	list-style-image: url(../icons/browser/fxa/logo.png) $i;
+	width: 64px $i;
+	height: 64px $i;
+	margin-inline-end: 14px $i;
+}
+
+.fxaMobilePromo {
+	line-height: 28px $i;
+	margin-bottom: 20px $i;
+	margin-top: 25px $i;
+}
+
+#fxaLoginRejectedWarning {
+	list-style-image: url(../icons/browser/warning.svg) $i;
+	filter: drop-shadow(0 1px 0 hsla(206, 50%, 10%, .15)) $i;
+	margin: 4px 8px 0px 0px $i;
+}
+
+#syncOptions {
+	margin-bottom: 27.5px $i;
+}
+
+.androidLink {
+	list-style-image: url("../icons/browser/fxa/android.png") $i;
+}
+
+.iOSLink {
+	list-style-image: url("../icons/browser/fxa/ios.png") $i;
+}
+
+.androidLink,
+.iOSLink {
+	vertical-align: bottom $i;
+	padding: 0 5px $i;
+	height: 28px $i;
+}
+
+#tosPP-small {
+	margin-top: 20px $i;
+	margin-bottom: 20px $i;
+}
+
+@media (min-resolution: 1.1dppx) {
+	.androidLink {
+		list-style-image: url("../icons/browser/fxa/android@2x.png") $i;
+	}
+	.iOSLink {
+		list-style-image: url("../icons/browser/fxa/ios@2x.png") $i;
+	}
+	.fxaFirefoxLogo {
+		list-style-image: url(../icons/browser/fxa/logo@2x.png) $i;
+	}
+}
+
+#updateDeck > hbox > label {
+	margin-inline-end: 5px ! important $i;
+}
+
+.update-throbber {
+	width: 16px $i;
+	min-height: 16px $i;
+	margin-inline-end: 3px $i;
+	list-style-image: url("../icons/content/icons/loading.png") $i;
+}
+
+@media (min-resolution: 1.1dppx) {
+	.update-throbber {
+		list-style-image: url("../icons/content/icons/loading@2x.png") $i;
+	}
+}
+
+.search-container {
+	position: sticky $i;
+	background-color: var(--in-content-page-background) $i;
+	width: 100% $i;
+	top: 0 $i;
+	z-index: 1 $i;
+}
+
+#searchInput {
+	width: 230px $i;
+	margin: 20px 0 $i;
+}
+
+#searchInput .textbox-search-icons:not([selectedIndex="1"]) {
+	display: none $i;
+}
+
+.search-tooltip {
+	font-size: 1.25rem $i;
+	position: absolute $i;
+	padding: 0 10px $i;
+	background-color: #ffe900 $i;
+	border: 1px solid #d7b600 $i;
+	user-select: none $i;
+	bottom: 35px $i;
+}
+
+.search-tooltip:hover,
+.search-tooltip:hover::before {
+	opacity: .1 $i;
+}
+
+.search-tooltip::before {
+	position: absolute $i;
+	content: "" $i;
+	border: 7px solid transparent $i;
+	border-top-color: #d7b600 $i;
+	top: 100% $i;
+	offset-inline-start: calc(50% - 7px) $i;
+}
+
+.search-tooltip::after {
+	position: absolute $i;
+	content: "" $i;
+	border: 6px solid transparent $i;
+	border-top-color: #ffe900 $i;
+	top: 100% $i;
+	offset-inline-start: calc(50% - 6px) $i;
+}
+
+.search-tooltip-parent {
+	position: relative $i;
+}
+
+// Stylus yells at "in" here
+@css {
+	menulist[indicator=true] > menupopup menuitem:not([image]) > .menu-iconic-left {
+		display: flex !important;
+		min-width: auto !important; /* Override the min-width defined in menu.css */
+		margin-inline-end: 6px !important;
+	}
+
+	menulist[indicator=true] > menupopup menuitem:not([image]) > .menu-iconic-left > .menu-iconic-icon {
+		width: 8px !important;
+		height: 10px !important;
+		margin: 0 !important;
+	}
+
+	menulist[indicator=true] > menupopup menuitem[indicator=true]:not([image]) > .menu-iconic-left > .menu-iconic-icon {
+		list-style-image: url(../icons/browser/preferences/in-content-new/search-arrow-indicator.svg) !important;
+	}
+
+	menulist[indicator=true] > menupopup menuitem[indicator=true]:not([image]) > .menu-iconic-left > .menu-iconic-icon:-moz-locale-dir(rtl) {
+		transform: scaleX(-1) !important;
+	}
+}
+
+.menu-iconic-highlightable-text {
+	margin: 0 $i; /* Align with the margin of xul:label.menu-iconic-text */
+}
+
+.treecol-sortdirection {
+	/* override the Linux only toolkit rule */
+	appearance: none $i;
+}
+
+.actionsMenu {
+	font-family: "Clear Sans", sans-serif $i;
+	font-size: 1.25rem $i;
+	line-height: 22px $i;
+}
+
+.actionsMenu > .menulist-label-box > .menulist-icon {
+	margin-top: 1px $i;
+	margin-inline-start: 1px $i;
+	margin-inline-end: 6px $i;
+}
+
+.actionsMenu > .menulist-label-box > .menulist-label {
+	margin-top: 2px $i;
+}
+
+#fxaProfileImage {
+	user-focus: normal $i;
+}
+
+menulist.actionsMenu > .menulist-dropmarker {
+	margin-top: 11px $i;
+	margin-bottom: 11px $i;
+}
+
+textbox + button,
+filefield + button {
+	margin-inline-start: -4px $i;
+}
+
+// ???
+#updateSettingsContainer {
+	background-color: transparent $i;
+	padding: 0 $i;
+	border: none $i;
+}

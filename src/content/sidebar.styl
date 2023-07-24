@@ -1,0 +1,205 @@
+/*
+ * There are two different, but identical, sidebars,
+ * hence the "about:addons" comments.
+ */
+
+$category-background = @block {
+	background-color: var(--in-content-category-background) $i;
+}
+
+$category-container = @block {
+	{$category-background}
+	padding: 0 $i;
+	padding-top: 39px $i;
+	border: none $i;
+	border-radius: 0 $i;
+	margin: 0 $i;
+}
+
+$category-item = @block {
+	background-color: initial $i; // about:addons
+	color: var(--in-content-category-text) $i;
+	padding-block: 0 $i; // about:addons
+	padding-inline: 15px 21px $i;
+	margin: 0 $i;
+	border: 0 solid transparent $i;
+	border-inline-start-width: 4px $i;
+	border-radius: 0 $i;
+	min-height: 40px $i;
+	cursor: default $i; // about:networking
+}
+
+$category-item-hovered = @block {
+	background-color: var(--in-content-category-background-hover) $i;
+}
+
+$category-item-selected = @block {
+	background-color: var(--in-content-category-background-active) $i;
+	color: var(--in-content-category-text-selected) $i;
+	border-inline-start-color: var(--in-content-border-highlight) $i;
+}
+
+$category-item-focused = @block {
+	outline: none $i;
+	border-top: var(--in-content-category-border-focus) $i;
+	border-bottom: var(--in-content-category-border-focus) $i;
+}
+
+$category-item-name = @block {
+	line-height: 22px $i;
+	font-size: 1.25rem $i;
+	padding-bottom: 2px $i;
+	padding-inline-start: 9px $i;
+	margin: 0 $i;
+}
+
+$category-separator = @block {
+	border-top-color: rgba(255,255,255,0.15) $i;
+}
+
+#sidebar, // about:addons
+.navigation {
+	{$category-background}
+}
+
+#categories {
+	{$category-container}
+
+	hr {
+		{$category-separator}
+	}
+}
+
+.category {
+	{$category-item}
+
+	/*
+	 * Increase specificity for about:addons
+	 * caused by the html|button:enabled:hover rule.
+	 */
+	#categories &:hover {
+		{$category-item-hovered}
+	}
+
+	#categories &[selected],
+	#categories &.selected {
+		{$category-item-selected}
+	}
+
+	#categories[keyboard-navigation="true"]:focus-visible > &[current],
+	#categories > &:focus-visible{
+		{$category-item-focused}
+	}
+
+	&-name {
+		{$category-item-name}
+	}
+
+	// Preferences
+	for i in general home search privacy sync experimental {
+		#category-{i} > &-icon {
+			list-style-image: s('url("../icons/preferences.svg#%s")', i) $i;
+		}
+	}
+	// Special case, as there is no Mozilla icon
+	#category-more-from-mozilla > &-icon {
+		color: #f1f1f1;
+	}
+	// Addons
+	icons = {
+		discover:   'category-discover.png'
+		extension:  'extensionGeneric-16.png'
+		theme:      'themeGeneric.png'
+		plugin:     'category-plugins.png'
+		dictionary: 'dictionaryGeneric.png'
+		locale:     'localeGeneric.png'
+	}
+	for k, v in icons {
+		&{s('[name="%s"]', unquote(k))} {
+			background-image: s('url("../icons/content/extensions/%s")', unquote(v)) $i;
+		}
+	}
+	// Special case for a different directory
+	&[name="sitepermission"] {
+		background-image: url("../icons/content/icons/Authentication.png") $i;
+	}
+	&[viewid^="addons://"] {
+		background-position: 15px center $i;
+
+		.category-name {
+			padding-inline-start: 33px $i;
+		}
+	}
+}
+
+.sidebar-footer {
+	&-list {
+		gap: 7px;
+		margin-inline: 0 15px $i;
+		margin-block: 0 2rem $i;
+
+		// about:addons
+		display: flex;
+		flex-direction: column;
+	}
+
+	// TODO: use sidebar-footer-icon, no idea how for now ...
+	&-link {
+		background-image: var(--sidebar-footer-icon) $i;
+		background-color: transparent $i;
+		background-repeat: no-repeat;
+		background-position: 15px;
+		background-size: contain;
+		-moz-context-properties: fill, stroke, stroke-opacity;
+		fill: #999;
+		stroke: #999;
+		stroke-opacity: 0;
+		white-space: nowrap $i;
+		text-decoration: none $i; // doesn't work for no reason
+		padding-inline-start: 35px $i;
+		border: none $i;
+		height: 14px $i;
+		cursor: pointer $i;
+
+		&[href="about:addons"] {
+			--sidebar-footer-icon: url("../icons/chrome/browser/extension.svg");
+		}
+		&[href="about:preferences"] {
+			--sidebar-footer-icon: url("../icons/chrome/browser/settings.svg");
+		}
+		&[support-page] {
+			--sidebar-footer-icon: url("../icons/chrome/browser/help.svg");
+		}
+
+		&:hover {
+			fill: #fff;
+			stroke: #808080;
+			stroke-opacity: 1;
+
+			&:active {
+				stroke: #666;
+			}
+		}
+	}
+
+	&-icon {
+		display: none;
+	}
+
+	&-label {
+		color: var(--in-content-category-text) $i;
+		font-size: 13px $i;
+		line-height: 13px $i;
+		margin: 0 7px $i;
+		cursor: pointer $i;
+	}
+}
+
+@media (max-width: 800px) {
+	.category-name {
+		display: none $i;
+	}
+	.sidebar-footer-link {
+		font-size: 0 $i;
+	}
+}

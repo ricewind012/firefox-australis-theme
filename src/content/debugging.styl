@@ -1,0 +1,74 @@
+.app {
+	--sidebar-width: var(--in-content-sidebar-width) $i;
+	--page-width:    800px $i;
+
+	grid-column-gap: 0 $i;
+
+	&__content {
+		{$main-content}
+		margin: 0 $i;
+
+		// wtf lol
+		&::after {
+			display: none;
+		}
+	}
+}
+
+.sidebar {
+	{$category-background}
+	padding: 0 $i;
+
+	& > ul {
+		{$category-container}
+	}
+
+	&-item {
+		{$category-item}
+		height: 40px $i;
+
+		&--selectable:not(&--selected):hover {
+			{$category-item-hovered}
+		}
+
+		&:focus-within {
+			// Skip, as it has its own outline.
+		}
+
+		&--selected {
+			{$category-item-selected}
+		}
+
+		&__link {
+			&,
+			&:hover {
+				color: inherit $i;
+				text-decoration: none $i;
+				cursor: default $i;
+			}
+		}
+	}
+
+	&__label {
+		color: var(--in-content-category-text) $i;
+	}
+}
+
+.separator {
+	{$category-separator}
+	margin: revert $i; // initial html.css value
+	margin-inline: -19px -21px $i;
+}
+
+.main-heading,
+.alt-heading {
+	--main-heading-icon-size: 2.5rem;
+
+	{$header}
+	{$header-name}
+}
+
+button {
+	font-size: 15px $i; // inherits <h1> font size
+	height: unset $i;
+}

@@ -1,0 +1,31 @@
+menulist {
+  color: -moz-DialogText $i;
+  font: menu $i;
+	padding: 0 $i;
+  margin: 2px 4px;
+
+	&:hover {
+		color: -moz-buttonhovertext $i;
+	}
+
+	&:hover:active,
+	&[open="true"] {
+		color: ButtonText $i;
+	}
+
+	&[disabled="true"]:hover {
+		&,
+		&:active {
+			color: GrayText $i;
+		}
+	}
+}
+
+#label-box {
+  color: inherit;
+	padding: 0 10px $i;
+
+	label {
+		margin-inline: 0 $i;
+	}
+}

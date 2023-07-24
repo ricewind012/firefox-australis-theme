@@ -1,0 +1,1443 @@
+@namespace html "http://www.w3.org/1999/xhtml";
+@namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+@-moz-document url-prefix('about:'), url-prefix('chrome://browser/content') {
+  .close-icon {
+    appearance: none !important;
+    height: 16px !important;
+    width: 16px !important;
+    background-image: -moz-image-rect(url("../icons/content/global/icons/close.svg"), 0, 16, 16, 0) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    list-style-image: none !important;
+  }
+  .close-icon:hover {
+    background-image: -moz-image-rect(url("../icons/content/global/icons/close.svg"), 0, 32, 16, 16) !important;
+  }
+  .close-icon:hover:active {
+    background-image: -moz-image-rect(url("../icons/content/global/icons/close.svg"), 0, 48, 16, 32) !important;
+  }
+  .dialogOverlay[topmost="true"] {
+    background-color: rgba(0,0,0,0.5) !important;
+  }
+  .dialogBox,
+  dialog {
+    background-color: #fbfbfb !important;
+    background-clip: content-box !important;
+    color: #424e5a !important;
+    font-size: 14px !important;
+/* `transparent` will use the dialogText color in high-contrast themes and
+			 when page colors are disabled */
+    border: 1px solid transparent !important;
+    border-radius: 3.5px !important;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.3) !important;
+    padding: 0 !important;
+  }
+  .dialogBox[resizable="true"],
+  dialog[resizable="true"] {
+    resize: both !important;
+    overflow: hidden !important;
+    min-width: 66ch !important;
+  }
+  .dialogBox .close-icon,
+  dialog .close-icon {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 16px !important;
+    min-width: 0 !important;
+  }
+  .dialogTitleBar,
+  h1[part="header"] {
+    padding: 3.5px 0 !important;
+    background-color: #f1f1f1 !important;
+    border-bottom: 1px solid #c1c1c1 !important;
+  }
+  .dialogFrame {
+    margin: 0 !important;
+  }
+  dialog {
+    background-color: #fff !important;
+  }
+  dialog[subdialog] {
+    padding: 0 !important;
+  }
+  .box-inherit[part="content-box"] {
+    padding: 20px !important;
+  }
+  h1[part="header"] {
+    text-align: center;
+    font-size: inherit !important;
+    font-weight: 600 !important;
+    line-height: 1.8em !important;
+  }
+  menulist {
+    color: -moz-DialogText !important;
+    font: menu !important;
+    padding: 0 !important;
+    margin: 2px 4px;
+  }
+  menulist:hover {
+    color: -moz-buttonhovertext !important;
+  }
+  menulist:hover:active,
+  menulist[open="true"] {
+    color: ButtonText !important;
+  }
+  menulist[disabled="true"]:hover,
+  menulist[disabled="true"]:hover:active {
+    color: GrayText !important;
+  }
+  #label-box {
+    color: inherit;
+    padding: 0 10px !important;
+  }
+  #label-box label {
+    margin-inline: 0 !important;
+  }
+  :root {
+    --in-content-page-color: #424e5a !important;
+    --in-content-page-background: #fbfbfb !important;
+    --in-content-text-color: #333 !important;
+    --in-content-selected-text: #fff !important;
+    --in-content-header-border-color: #c8c8c8 !important;
+    --in-content-box-background: #fff !important;
+    --in-content-box-background-odd: #f3f6fa !important;
+    --in-content-box-background-hover: #ebebeb !important;
+    --in-content-box-background-active: #dadada !important;
+    --in-content-box-border-color: #c1c1c1 !important;
+    --in-content-item-hover: rgba(0,149,221,0.25) !important;
+    --in-content-item-selected: #0a84ff !important;
+    --in-content-border-highlight: #ff9500 !important;
+    --in-content-border-focus: #0a84ff !important;
+    --in-content-border-color: #c1c1c1 !important;
+    --in-content-category-text: #c1c1c1 !important;
+    --in-content-category-border-focus: 1px dotted #fff !important;
+    --in-content-category-text-selected: #f2f2f2 !important;
+    --in-content-category-background: #424f5a !important;
+    --in-content-category-background-hover: #5e6972 !important;
+    --in-content-category-background-active: #343f48 !important;
+    --in-content-tab-color: #424f5a !important;
+    --in-content-link-color: #0a84ff !important;
+    --in-content-link-color-hover: #0060df !important;
+    --in-content-link-color-active: #ff9500 !important;
+    --in-content-link-color-visited: #551a8b !important;
+    --in-content-primary-button-background: #0a84ff !important;
+    --in-content-primary-button-background-hover: #0060df !important;
+    --in-content-primary-button-background-active: #003eaa !important;
+    --in-content-table-border-dark-color: #d1d1d1 !important;
+    --in-content-table-header-background: #0a84ff !important;
+    --in-content-sidebar-width: 276px !important;
+  }
+  :root {
+    font: message-box !important;
+    appearance: none !important;
+    background-color: var(--in-content-page-background) !important;
+    color: var(--in-content-page-color) !important;
+  }
+  html|body {
+    font-size: 15px !important;
+    font-weight: normal !important;
+    margin: 0 !important;
+  }
+  html|h1 {
+    font-size: 2.5em !important;
+    font-weight: lighter !important;
+    line-height: 1.2 !important;
+    color: var(--in-content-text-color) !important;
+    margin: 0 !important;
+    margin-bottom: 0.5em !important;
+  }
+  html|hr {
+    border-style: solid none none none !important;
+    border-color: var(--in-content-border-color) !important;
+  }
+  html|h2 {
+    font-size: 1.3rem !important;
+    font-weight: bold !important;
+    line-height: 22px !important;
+  }
+  xul|label > html|h2 {
+    margin: 0 !important;
+  }
+  description,
+  label {
+    line-height: inherit !important;
+    margin-top: 1px !important;
+    margin-bottom: 2px !important;
+    margin-inline-start: 6px !important;
+    margin-inline-end: 5px !important;
+  }
+  .main-content {
+    padding-top: 40px !important;
+    padding-inline-end: 44px !important; /* compensate the 4px margin of child elements */
+    padding-bottom: 48px !important;
+    padding-inline-start: 48px !important;
+    overflow: auto !important;
+  }
+  xul|groupbox {
+    appearance: none !important;
+    border: none !important;
+    margin: 15px 0 0 !important;
+    padding-inline-start: 0 !important;
+    padding-inline-end: 0 !important;
+    font-size: 1.25rem !important;
+  }
+  xul|groupbox xul|label,
+  xul|groupbox xul|description {
+    margin-inline-start: 0 !important;
+    margin-inline-end: 0 !important;
+  }
+  xul|tabpanels {
+    appearance: none !important;
+    font-size: 1.25rem !important;
+    line-height: 22px !important;
+    border: none !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+    color: inherit !important;
+  }
+  xul|tabs {
+    margin-bottom: 15px !important;
+    border-top: 1px solid var(--in-content-box-border-color) !important;
+    border-bottom: 1px solid var(--in-content-box-border-color) !important;
+    background-color: var(--in-content-page-background) !important;
+  }
+  xul|tab {
+    appearance: none !important;
+    margin-top: 0 !important;
+    padding: 4px 20px !important;
+    min-height: 44px !important;
+    color: var(--in-content-tab-color) !important;
+    background-color: var(--in-content-page-background) !important;
+    border-width: 0 !important;
+/* $i overrides tabbox.css RTL and visuallyselected rules */
+    border-radius: 0 !important;
+    transition: background-color 50ms ease 0s !important;
+  }
+  xul|tab:hover {
+    background-color: var(--in-content-box-background-hover) !important;
+  }
+  xul|tab[selected] {
+    background-color: var(--in-content-box-background-hover) !important;
+    padding-bottom: 0 !important; /* compensate the 4px border */
+    border-bottom: 4px solid var(--in-content-border-highlight) !important;
+  }
+  xul|*.tab-text {
+    font-size: 1.3rem !important;
+    line-height: 22px !important;
+  }
+  html|button {
+    padding: 3px 10px !important;
+    font: inherit !important;
+  }
+  button,
+  html|select,
+  html|input[type="color"],
+  xul|menulist {
+    appearance: none !important;
+    min-height: 30px !important;
+    color: var(--in-content-text-color) !important;
+    border: 1px solid var(--in-content-box-border-color) !important;
+    border-radius: 2px !important;
+    background-color: var(--in-content-page-background) !important;
+  }
+  html|select:not([size]):not([multiple]) {
+    background-image: url("../icons/content/in-content/dropdown.svg#dropdown") !important;
+    background-position: right 3px center !important;
+    background-repeat: no-repeat !important;
+    background-size: auto 18px !important;
+    font-size: inherit !important;
+    padding-inline-start: 5px !important;
+    padding-inline-end: 24px !important;
+    text-overflow: ellipsis !important;
+  }
+  html|button:enabled:hover,
+  html|select:not([size]):not([multiple]):enabled:hover,
+  xul|button:not([disabled="true"]):hover,
+  html|input[type="color"]:not([disabled="true"]):hover,
+  xul|menulist:not([disabled="true"]):hover {
+    background-color: var(--in-content-box-background-hover) !important;
+  }
+  html|button:enabled:hover:active,
+  html|select:not([size]):not([multiple]):enabled:hover:active,
+  xul|button:not([disabled="true"]):hover:active,
+  html|input[type="color"]:not([disabled="true"]):hover:active,
+  xul|menulist[open="true"]:not([disabled="true"]) {
+    background-color: var(--in-content-box-background-active) !important;
+  }
+  html|button:disabled,
+  html|select:disabled,
+  xul|button[disabled="true"],
+  html|input[type="color"][disabled="true"],
+  xul|menulist[disabled="true"] {
+    opacity: 0.5 !important;
+  }
+  *|button.primary {
+    background-color: var(--in-content-primary-button-background) !important;
+    border-color: transparent !important;
+    color: var(--in-content-selected-text) !important;
+  }
+  html|button.primary:enabled:hover,
+  xul|button.primary:not([disabled="true"]):hover {
+    background-color: var(--in-content-primary-button-background-hover) !important;
+  }
+  html|button.primary:enabled:hover:active,
+  xul|button.primary:not([disabled="true"]):hover:active {
+    background-color: var(--in-content-primary-button-background-active) !important;
+  }
+  html|input[type="color"] {
+    padding: 6px !important;
+    width: 50px !important;
+  }
+  xul|button > xul|*.button-box,
+  xul|menulist > xul|*.menulist-label-box {
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+  }
+  xul|menulist > xul|*.menulist-label-box > xul|*.menulist-icon[src] {
+    margin-inline-end: 5px !important;
+  }
+  xul|*.spinbuttons-button {
+    min-height: initial !important;
+    margin-inline-start: 10px !important;
+    margin-inline-end: 2px !important;
+  }
+  xul|*.spinbuttons-up {
+    margin-top: 2px !important;
+    border-radius: 1px 1px 0 0 !important;
+  }
+  xul|*.spinbuttons-down {
+    margin-bottom: 2px !important;
+    border-radius: 0 0 1px 1px !important;
+  }
+  xul|*.spinbuttons-button > xul|*.button-box {
+    padding: 1px 5px 2px !important;
+  }
+  xul|*.spinbuttons-up > xul|*.button-box > xul|*.button-icon {
+    list-style-image: url("../icons/content/arrow/arrow-up.gif") !important;
+  }
+  xul|*.spinbuttons-up[disabled="true"] > xul|*.button-box > xul|*.button-icon {
+    list-style-image: url("../icons/content/arrow/arrow-up-dis.gif") !important;
+  }
+  xul|*.spinbuttons-down > xul|*.button-box > xul|*.button-icon {
+    list-style-image: url("../icons/content/arrow/arrow-dn.gif") !important;
+  }
+  xul|*.spinbuttons-down[disabled="true"] > xul|*.button-box > xul|*.button-icon {
+    list-style-image: url("../icons/content/arrow/arrow-dn-dis.gif") !important;
+  }
+  dropmarker {
+    appearance: none !important;
+    margin-inline-end: 4px !important;
+    padding: 0 !important;
+    border: none !important;
+    background-color: transparent !important;
+    list-style-image: url("../icons/content/in-content/dropdown.svg") !important;
+    -moz-context-properties: fill !important;
+    fill: -moz-DialogText !important;
+  }
+  link[href="chrome://global/skin/dropmarker.css"] + image {
+    list-style-image: url("../icons/content/in-content/dropdown.svg") !important;
+    fill: -moz-DialogText !important;
+    width: 18px !important;
+    height: 18px !important;
+  }
+  xul|menulist > xul|menupopup,
+  xul|button[type="menu"] > xul|menupopup {
+    appearance: none !important;
+    border: 1px solid var(--in-content-box-border-color) !important;
+    border-radius: 2px !important;
+    background-color: var(--in-content-box-background) !important;
+  }
+  xul|menulist > xul|menupopup xul|menu,
+  xul|menulist > xul|menupopup xul|menuitem,
+  xul|button[type="menu"] > xul|menupopup xul|menu,
+  xul|button[type="menu"] > xul|menupopup xul|menuitem {
+    appearance: none !important;
+    font-size: 1em !important;
+    color: var(--in-content-text-color) !important;
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+    padding-inline-start: 10px !important;
+    padding-inline-end: 30px !important;
+  }
+  xul|menulist > xul|menupopup > xul|menu:not([disabled="true"])[_moz-menuactive="true"],
+  xul|menulist > xul|menupopup > xul|menuitem:not([disabled="true"])[_moz-menuactive="true"],
+  xul|button[type="menu"] > xul|menupopup > xul|menu:not([disabled="true"])[_moz-menuactive="true"],
+  xul|button[type="menu"] > xul|menupopup > xul|menuitem:not([disabled="true"])[_moz-menuactive="true"] {
+    color: var(--in-content-text-color) !important;
+    background-color: var(--in-content-item-hover) !important;
+  }
+  xul|menulist > xul|menupopup > xul|menu:not([disabled="true"])[selected="true"],
+  xul|menulist > xul|menupopup > xul|menuitem:not([disabled="true"])[selected="true"],
+  xul|button[type="menu"] > xul|menupopup > xul|menu:not([disabled="true"])[selected="true"],
+  xul|button[type="menu"] > xul|menupopup > xul|menuitem:not([disabled="true"])[selected="true"] {
+    color: var(--in-content-selected-text) !important;
+    background-color: var(--in-content-item-selected) !important;
+  }
+  xul|menulist > xul|menupopup > xul|menu[disabled="true"],
+  xul|menulist > xul|menupopup > xul|menuitem[disabled="true"],
+  xul|button[type="menu"] > xul|menupopup > xul|menu[disabled="true"],
+  xul|button[type="menu"] > xul|menupopup > xul|menuitem[disabled="true"] {
+    color: #999 !important;
+/* override the [_moz-menuactive="true"] background color from
+		 global/menu.css */
+    background-color: transparent !important;
+  }
+  xul|menulist > xul|menupopup xul|menuseparator,
+  xul|button[type="menu"] > xul|menupopup xul|menuseparator {
+    appearance: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-top: 1px solid var(--in-content-box-border-color) !important;
+    border-bottom: none !important;
+  }
+  html|input[type="email"],
+  html|input[type="tel"],
+  html|input[type="text"],
+  html|textarea,
+  xul|search-textbox {
+    appearance: none !important;
+    color: var(--in-content-text-color) !important;
+    border: 1px solid var(--in-content-box-border-color) !important;
+    border-radius: 2px !important;
+    background-color: var(--in-content-box-background) !important;
+  }
+  xul|search-textbox {
+    min-height: 30px !important;
+    padding: 0 10px !important;
+  }
+  xul|search-textbox.tree-input {
+    min-height: unset !important;
+    padding-right: unset !important;
+    padding-left: unset !important;
+  }
+  html|input[type="email"],
+  html|input[type="tel"],
+  html|input[type="text"],
+  html|textarea {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    padding: 5px 10px !important;
+  }
+  html|input[type="email"]:focus,
+  html|input[type="tel"]:focus,
+  html|input[type="text"]:focus,
+  html|textarea:focus,
+  xul|search-textbox[focused] {
+    border-color: var(--in-content-border-focus) !important;
+    outline: none !important;
+  }
+  html|input[type="email"]:disabled,
+  html|input[type="tel"]:disabled,
+  html|input[type="text"]:disabled,
+  html|textarea:disabled,
+  xul|search-textbox[disabled="true"] {
+    opacity: 0.5 !important;
+  }
+  html|a,
+  .text-link {
+    color: var(--in-content-link-color) !important;
+    text-decoration: none !important;
+  }
+  html|a:hover,
+  .text-link:hover {
+    color: var(--in-content-link-color-hover) !important;
+    text-decoration: underline !important;
+  }
+  html|a:visited {
+    color: var(--in-content-link-color-visited) !important;
+  }
+  html|a:hover:active,
+  .text-link:hover:active {
+    color: var(--in-content-link-color-active) !important;
+    text-decoration: none !important;
+  }
+  xul|checkbox {
+    margin: 4px 2px !important;
+    appearance: none !important;
+  }
+  xul|*.checkbox-check,
+  html|input[type="checkbox"] {
+    appearance: none !important;
+    width: 23px !important;
+    height: 23px !important;
+    border: 1px solid var(--in-content-box-border-color) !important;
+    border-radius: 2px !important;
+    margin: 0 !important;
+    margin-inline-end: 10px !important;
+    background-color: #f1f1f1 !important;
+    background-image: linear-gradient(#fff, rgba(255,255,255,0.8)) !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    box-shadow: 0 1px 1px 0 #fff, inset 0 2px 0 0 rgba(0,0,0,0.03) !important;
+  }
+  xul|checkbox:not([disabled="true"]):hover > xul|*.checkbox-check,
+  html|input[type="checkbox"]:not(:disabled):hover {
+    border-color: var(--in-content-border-focus) !important;
+  }
+  xul|*.checkbox-check[checked] {
+    list-style-image: url("../icons/content/in-content/check.svg") !important;
+    -moz-context-properties: fill, stroke !important;
+    fill: #2292d0 !important;
+    stroke: none !important;
+  }
+  html|input[type="checkbox"]:checked {
+    background-image: url("../icons/content/in-content/check.svg"), linear-gradient(#fff, rgba(255,255,255,0.8)) !important;
+    -moz-context-properties: fill, stroke !important;
+    fill: #2292d0 !important;
+    stroke: none !important;
+  }
+  xul|checkbox[disabled="true"] > xul|*.checkbox-check,
+  html|input[type="checkbox"]:disabled {
+    opacity: 0.5 !important;
+  }
+  xul|richlistitem > xul|*.checkbox-check {
+    margin: 3px 6px !important;
+  }
+  html|*.toggle-container-with-text {
+    display: flex !important;
+    align-items: center !important;
+  }
+  xul|radio {
+    margin-inline-start: 0 !important;
+    appearance: none !important;
+  }
+  xul|*.radio-check {
+    appearance: none !important;
+    width: 23px !important;
+    height: 23px !important;
+    border: 1px solid var(--in-content-box-border-color) !important;
+    border-radius: 50% !important;
+    margin-inline-end: 10px !important;
+    background-color: #f1f1f1 !important;
+    background-image: linear-gradient(#fff, rgba(255,255,255,0.8)) !important;
+    box-shadow: 0 1px 1px 0 #fff, inset 0 2px 0 0 rgba(0,0,0,0.03) !important;
+  }
+  xul|radio:not([disabled="true"]):hover > xul|*.radio-check {
+    border-color: var(--in-content-border-focus) !important;
+  }
+  xul|*.radio-check[selected] {
+    list-style-image: url("../icons/content/in-content/radio.svg") !important;
+    -moz-context-properties: fill !important;
+    fill: #2292d0 !important;
+  }
+  xul|radio[disabled="true"] > xul|*.radio-check {
+    opacity: 0.5 !important;
+  }
+  xul|*.radio-label-box {
+    margin-inline-start: -1px !important; /* negative margin for the transparent border */
+    margin-inline-end: 10px !important;
+    padding-inline-start: 0 !important;
+  }
+  .header {
+    border-bottom: 1px solid var(--in-content-header-border-color) !important;
+    margin-inline-end: 4px !important; /* add the 4px end-margin of other elements */
+    margin-bottom: 15px !important;
+    padding-bottom: 15px !important;
+    align-items: baseline !important;
+  }
+  .header-name {
+    font-size: 2.5rem !important;
+    font-weight: normal !important;
+    line-height: 40px !important;
+    margin: 0 !important;
+    user-select: none !important;
+  }
+  html|select[size][multiple],
+  xul|richlistbox,
+  xul|listbox {
+    appearance: none !important;
+    margin-inline-start: 0 !important;
+    background-color: var(--in-content-box-background) !important;
+    border: 1px solid var(--in-content-box-border-color) !important;
+    color: var(--in-content-text-color) !important;
+  }
+  html|select[size][multiple] > html|option,
+  xul|treechildren::-moz-tree-row,
+  xul|listbox xul|listitem {
+    padding: 0.3em !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background-image: none !important;
+  }
+  html|select[size][multiple] > html|option:hover,
+  xul|treechildren::-moz-tree-row(hover),
+  xul|listbox xul|listitem:hover {
+    background-color: var(--in-content-item-hover) !important;
+  }
+  xul|treechildren::-moz-tree-row(selected),
+  xul|listbox xul|listitem[selected="true"] {
+    background-color: var(--in-content-item-selected) !important;
+    color: var(--in-content-selected-text) !important;
+  }
+  xul|tree {
+    appearance: none !important;
+    font-size: 1em !important;
+    border: 1px solid var(--in-content-box-border-color) !important;
+    background-color: var(--in-content-box-background) !important;
+    margin: 0 !important;
+  }
+  xul|tree:-moz-focusring,
+  xul|richlistbox:-moz-focusring {
+    border: 1px dotted var(--in-content-border-focus) !important;
+  }
+  xul|listheader,
+  xul|treecols {
+    appearance: none !important;
+    border: none !important;
+    border-bottom: 1px solid var(--in-content-border-color) !important;
+    padding: 0 !important;
+  }
+  .autocomplete-tree > xul|treecols {
+    border-bottom: none !important;
+  }
+  xul|treecol:not([hideheader="true"]),
+  xul|treecolpicker {
+    appearance: none !important;
+    border: none !important;
+    background-color: var(--in-content-box-background-hover) !important;
+    color: #808080 !important;
+    padding: 5px 10px !important;
+  }
+  xul|treecol:not([hideheader="true"]):not([sortable="false"]):hover,
+  xul|treecolpicker:hover {
+    background-color: var(--in-content-box-background-active) !important;
+    color: var(--in-content-text-color) !important;
+  }
+  xul|treecol:not([hideheader="true"]):not(:first-child),
+  xul|treecolpicker {
+    border-inline-start-width: 1px !important;
+    border-inline-start-style: solid !important;
+    border-image: linear-gradient(transparent 0%, transparent 20%, #c1c1c1 20%, #c1c1c1 80%, transparent 80%, transparent 100%) 1 1 !important;
+  }
+  xul|treecol:not([hideheader="true"]) > xul|*.treecol-sortdirection[sortDirection] {
+    list-style-image: url("../icons/content/in-content/dropdown.svg") !important;
+    -moz-context-properties: fill !important;
+    fill: -moz-DialogText !important;
+    width: 18px !important;
+    height: 18px !important;
+  }
+  xul|treecol:not([hideheader="true"]) > xul|*.treecol-sortdirection[sortDirection="ascending"] {
+    transform: scaleY(-1) !important;
+  }
+  xul|treechildren::-moz-tree-row {
+    min-height: 2em !important;
+  }
+  xul|treechildren::-moz-tree-cell-text {
+    color: var(--in-content-text-color) !important;
+  }
+  xul|treechildren::-moz-tree-cell-text(selected) {
+    color: var(--in-content-selected-text) !important;
+  }
+  xul|tab[visuallyselected] {
+/* Override styles for tab[selected] from
+		 toolkit/themes/linux/global/tabbox.css */
+    margin-bottom: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+  button,
+  html|input[type="color"],
+  xul|menulist {
+    margin: 2px 4px !important;
+  }
+  xul|button:-moz-focusring {
+    outline: 1px dotted !important;
+    outline-offset: -2px !important;
+  }
+  xul|button > xul|*.button-box,
+  xul|menulist > xul|*.menulist-label-box {
+    appearance: none !important;
+  }
+  xul|*.groupbox-body {
+    padding-inline-start: 0 !important;
+  }
+  xul|menulist {
+    font-size: inherit !important;
+  }
+  dropmarker {
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+  }
+  xul|*.checkbox-check {
+    background-image: none !important;
+  }
+  xul|*.checkbox-check[checked] {
+    fill: -moz-dialogText !important;
+    stroke: none !important;
+    background-color: -moz-dialog !important;
+  }
+  xul|radio {
+    align-items: center !important;
+  }
+  xul|*.radio-check {
+    background-image: none !important;
+  }
+  xul|*.radio-check[selected] {
+    background-color: -moz-dialog !important;
+    fill: -moz-dialogText !important;
+  }
+  xul|*.radio-label-box {
+    appearance: none !important;
+  }
+  xul|radio:not([disabled="true"]):hover,
+  xul|checkbox:not([disabled="true"]):hover {
+    color: var(--in-content-text-color) !important;
+  }
+  xul|*.numberbox-input-box {
+    appearance: none !important;
+    border-width: 0 !important;
+  }
+  xul|menulist:-moz-focusring > xul|*.menulist-label-box,
+  xul|radio[focused="true"] > xul|*.radio-label-box,
+  html|input[type="checkbox"]:-moz-focusring + html|label:before {
+    outline: 1px dotted !important;
+  }
+  xul|spinbuttons {
+    appearance: none !important;
+  }
+  xul|treechildren::-moz-tree-row(multicol,
+  odd) {
+    background-color: var(--in-content-box-background-odd) !important;
+  }
+  xul|treechildren::-moz-tree-row(hover) {
+    background-color: var(--in-content-item-hover) !important;
+  }
+  xul|treechildren::-moz-tree-row(selected) {
+    background-color: var(--in-content-item-selected) !important;
+  }
+  #sidebar,
+  .navigation {
+    background-color: var(--in-content-category-background) !important;
+  }
+  #categories {
+    background-color: var(--in-content-category-background) !important;
+    padding: 0 !important;
+    padding-top: 39px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+  #categories hr {
+    border-top-color: rgba(255,255,255,0.15) !important;
+  }
+  .category {
+    background-color: initial !important;
+    color: var(--in-content-category-text) !important;
+    padding-block: 0 !important;
+    padding-inline: 15px 21px !important;
+    margin: 0 !important;
+    border: 0 solid transparent !important;
+    border-inline-start-width: 4px !important;
+    border-radius: 0 !important;
+    min-height: 40px !important;
+    cursor: default !important;
+/*
+	 * Increase specificity for about:addons
+	 * caused by the html|button:enabled:hover rule.
+	 */
+  }
+  #categories .category:hover {
+    background-color: var(--in-content-category-background-hover) !important;
+  }
+  #categories .category[selected],
+  #categories .category.selected {
+    background-color: var(--in-content-category-background-active) !important;
+    color: var(--in-content-category-text-selected) !important;
+    border-inline-start-color: var(--in-content-border-highlight) !important;
+  }
+  #categories[keyboard-navigation="true"]:focus-visible > .category[current],
+  #categories > .category:focus-visible {
+    outline: none !important;
+    border-top: var(--in-content-category-border-focus) !important;
+    border-bottom: var(--in-content-category-border-focus) !important;
+  }
+  .category-name {
+    line-height: 22px !important;
+    font-size: 1.25rem !important;
+    padding-bottom: 2px !important;
+    padding-inline-start: 9px !important;
+    margin: 0 !important;
+  }
+  #category-general > .category-icon {
+    list-style-image: url("../icons/preferences.svg#general") !important;
+  }
+  #category-home > .category-icon {
+    list-style-image: url("../icons/preferences.svg#home") !important;
+  }
+  #category-search > .category-icon {
+    list-style-image: url("../icons/preferences.svg#search") !important;
+  }
+  #category-privacy > .category-icon {
+    list-style-image: url("../icons/preferences.svg#privacy") !important;
+  }
+  #category-sync > .category-icon {
+    list-style-image: url("../icons/preferences.svg#sync") !important;
+  }
+  #category-experimental > .category-icon {
+    list-style-image: url("../icons/preferences.svg#experimental") !important;
+  }
+  #category-more-from-mozilla > .category-icon {
+    color: #f1f1f1;
+  }
+  .category[name="discover"] {
+    background-image: url("../icons/content/extensions/category-discover.png") !important;
+  }
+  .category[name="extension"] {
+    background-image: url("../icons/content/extensions/extensionGeneric-16.png") !important;
+  }
+  .category[name="theme"] {
+    background-image: url("../icons/content/extensions/themeGeneric.png") !important;
+  }
+  .category[name="plugin"] {
+    background-image: url("../icons/content/extensions/category-plugins.png") !important;
+  }
+  .category[name="dictionary"] {
+    background-image: url("../icons/content/extensions/dictionaryGeneric.png") !important;
+  }
+  .category[name="locale"] {
+    background-image: url("../icons/content/extensions/localeGeneric.png") !important;
+  }
+  .category[name="sitepermission"] {
+    background-image: url("../icons/content/icons/Authentication.png") !important;
+  }
+  .category[viewid^="addons://"] {
+    background-position: 15px center !important;
+  }
+  .category[viewid^="addons://"] .category-name {
+    padding-inline-start: 33px !important;
+  }
+  .sidebar-footer-list {
+    gap: 7px;
+    margin-inline: 0 15px !important;
+    margin-block: 0 2rem !important;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar-footer-link {
+    background-image: var(--sidebar-footer-icon) !important;
+    background-color: transparent !important;
+    background-repeat: no-repeat;
+    background-position: 15px;
+    background-size: contain;
+    -moz-context-properties: fill, stroke, stroke-opacity;
+    fill: #999;
+    stroke: #999;
+    stroke-opacity: 0;
+    white-space: nowrap !important;
+    text-decoration: none !important;
+    padding-inline-start: 35px !important;
+    border: none !important;
+    height: 14px !important;
+    cursor: pointer !important;
+  }
+  .sidebar-footer-link[href="about:addons"] {
+    --sidebar-footer-icon: url("../icons/chrome/browser/extension.svg");
+  }
+  .sidebar-footer-link[href="about:preferences"] {
+    --sidebar-footer-icon: url("../icons/chrome/browser/settings.svg");
+  }
+  .sidebar-footer-link[support-page] {
+    --sidebar-footer-icon: url("../icons/chrome/browser/help.svg");
+  }
+  .sidebar-footer-link:hover {
+    fill: #fff;
+    stroke: #808080;
+    stroke-opacity: 1;
+  }
+  .sidebar-footer-link:hover:active {
+    stroke: #666;
+  }
+  .sidebar-footer-icon {
+    display: none;
+  }
+  .sidebar-footer-label {
+    color: var(--in-content-category-text) !important;
+    font-size: 13px !important;
+    line-height: 13px !important;
+    margin: 0 7px !important;
+    cursor: pointer !important;
+  }
+@media (max-width: 800px) {
+    .category-name {
+      display: none !important;
+    }
+    .sidebar-footer-link {
+      font-size: 0 !important;
+    }
+}
+}
+@-moz-document url-prefix('about:debugging') {
+  .app {
+    --sidebar-width: var(--in-content-sidebar-width) !important;
+    --page-width: 800px !important;
+    grid-column-gap: 0 !important;
+  }
+  .app__content {
+    padding-top: 40px !important;
+    padding-inline-end: 44px !important; /* compensate the 4px margin of child elements */
+    padding-bottom: 48px !important;
+    padding-inline-start: 48px !important;
+    overflow: auto !important;
+    margin: 0 !important;
+  }
+  .app__content::after {
+    display: none;
+  }
+  .sidebar {
+    background-color: var(--in-content-category-background) !important;
+    padding: 0 !important;
+  }
+  .sidebar > ul {
+    background-color: var(--in-content-category-background) !important;
+    padding: 0 !important;
+    padding-top: 39px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+  .sidebar-item {
+    background-color: initial !important;
+    color: var(--in-content-category-text) !important;
+    padding-block: 0 !important;
+    padding-inline: 15px 21px !important;
+    margin: 0 !important;
+    border: 0 solid transparent !important;
+    border-inline-start-width: 4px !important;
+    border-radius: 0 !important;
+    min-height: 40px !important;
+    cursor: default !important;
+    height: 40px !important;
+  }
+  .sidebar-item--selectable:not(.sidebar-item--selected):hover {
+    background-color: var(--in-content-category-background-hover) !important;
+  }
+  .sidebar-item--selected {
+    background-color: var(--in-content-category-background-active) !important;
+    color: var(--in-content-category-text-selected) !important;
+    border-inline-start-color: var(--in-content-border-highlight) !important;
+  }
+  .sidebar-item__link,
+  .sidebar-item__link:hover {
+    color: inherit !important;
+    text-decoration: none !important;
+    cursor: default !important;
+  }
+  .sidebar__label {
+    color: var(--in-content-category-text) !important;
+  }
+  .separator {
+    border-top-color: rgba(255,255,255,0.15) !important;
+    margin: revert !important;
+    margin-inline: -19px -21px !important;
+  }
+  .main-heading,
+  .alt-heading {
+    --main-heading-icon-size: 2.5rem;
+    border-bottom: 1px solid var(--in-content-header-border-color) !important;
+    margin-inline-end: 4px !important; /* add the 4px end-margin of other elements */
+    margin-bottom: 15px !important;
+    padding-bottom: 15px !important;
+    align-items: baseline !important;
+    font-size: 2.5rem !important;
+    font-weight: normal !important;
+    line-height: 40px !important;
+    margin: 0 !important;
+    user-select: none !important;
+  }
+  button {
+    font-size: 15px !important;
+    height: unset !important;
+  }
+}
+@-moz-document url-prefix('about:preferences') {
+  .main-content {
+    padding-top: 0 !important;
+  }
+  #preferences-body {
+    --main-pane-width: 800px !important;
+  }
+  #mainPrefPane {
+    width: 100% !important;
+    padding: 0 !important;
+    font: message-box !important;
+    font-size: 1.25rem !important;
+  }
+  description.indent,
+  .indent > description {
+    font-size: 1.18rem !important;
+    color: #737373 !important;
+  }
+  * {
+    user-select: text !important;
+  }
+  button,
+  treecol,
+  html|option {
+/* override the * rule */
+    user-select: none !important;
+  }
+
+	#engineList treechildren::-moz-tree-image(engineShown, checked),	#blocklistsTree treechildren::-moz-tree-image(selectionCol, checked) {
+		list-style-image: url("../icons/content/in-content/check.svg") $i;
+		-moz-context-properties: fill, stroke $i;
+		fill: #2292d0 $i;
+		stroke: none $i;
+		width: 21px $i;
+		height: 21px $i;
+	}
+
+	#engineList treechildren::-moz-tree-image(engineShown, checked, selected),	#blocklistsTree treechildren::-moz-tree-image(selectionCol, checked, selected) {
+		fill: white $i;
+		stroke: #0095dd $i;
+	}
+
+	#engineList treechildren::-moz-tree-row,	#blocklistsTree treechildren::-moz-tree-row {
+		min-height: 36px $i;
+	}
+  #selectionCol {
+    min-width: 26px !important;
+  }
+  .learnMore {
+    margin-inline-start: 10px !important;
+    font-weight: normal !important;
+    white-space: nowrap !important;
+  }
+  .accessory-button {
+    min-width: 145px !important;
+  }
+  #generalCategory,
+  #firefoxHomeCategory,
+  #searchCategory,
+  #browserPrivacyCategory,
+  #firefoxAccountCategory,
+  #firefoxExperimentalCategory,
+  #moreFromMozillaCategory-header {
+    margin-top: 0 !important;
+  }
+  .subcategory {
+    padding: 0 !important;
+    border: none !important;
+    margin-top: 48px !important;
+  }
+  .header:not([hidden]) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+  h1 {
+    font-size: 2rem !important;
+    font-weight: normal !important;
+    line-height: 40px !important;
+    margin: 0 !important;
+    user-select: none !important;
+  }
+  #startupTable {
+    border-collapse: collapse !important;
+  }
+  #startupTable > tr > td {
+    padding: 0 !important; /* remove the padding from html.css */
+  }
+  #startupTable > tr:not(:first-child) > td {
+    padding-top: 0.5em !important; /* add a spacing between the rows */
+  }
+  #startupTable > tr > .label-cell {
+    text-align: end !important;
+    width: 0 !important; /* make the column as small as possible */
+  }
+  #startupTable > tr > .label-cell > label {
+    white-space: nowrap !important;
+  }
+  #startupTable > tr > .content-cell > menulist,
+  #startupTable > tr > .content-cell > textbox {
+    width: calc(100% - 8px) !important;
+    margin-left: 4px !important;
+    margin-right: 4px !important;
+  }
+  #startupTable > tr > .homepage-buttons {
+    display: flex !important;
+    flex-wrap: wrap !important;
+  }
+  #startupTable > tr > .homepage-buttons > .content-cell-item {
+    flex-grow: 1 !important;
+  }
+  #useFirefoxSync {
+    font-size: 90% !important;
+    margin-inline-end: 8px !important;
+  }
+  #getStarted {
+    font-size: 90% !important;
+  }
+  #isNotDefaultLabel {
+    font-weight: bold !important;
+  }
+  #downloadFolder {
+    margin-inline-start: 0 !important;
+  }
+  #browserHomePage:-moz-locale-dir(rtl) input {
+    unicode-bidi: plaintext !important;
+    direction: rtl !important;
+  }
+  #defaultFontSizeLabel {
+/* needed to override common rule */
+    margin-inline-start: 4px !important;
+  }
+  #filter {
+    margin-inline-start: 0 !important;
+  }
+  #handlersView {
+    height: 25em !important;
+  }
+  #handlersView > richlistitem {
+    min-height: 36px !important;
+  }
+  .typeIcon {
+    margin-inline-start: 10px !important;
+    margin-inline-end: 9px !important;
+  }
+  .actionIcon {
+    margin-inline-start: 11px !important;
+    margin-inline-end: 8px !important;
+  }
+  .actionsMenu {
+    min-height: 36px !important;
+  }
+  .actionsMenu > menupopup > menuitem {
+    padding-inline-start: 10px !important;
+  }
+  .actionsMenu > menupopup > menuitem > .menu-iconic-left {
+    margin-inline-end: 8px !important;
+  }
+  .doNotTrackLearnMore {
+    margin-inline-start: calc(1em + 30px) !important;
+    margin-bottom: 1em !important;
+    font-weight: normal !important;
+  }
+  .doNotTrackLearnMore > label {
+    font-size: 1em !important;
+    margin-left: 0 !important;
+  }
+  #doNotTrackLearnMoreBox {
+    margin-top: 30px;
+  }
+  #trackingProtectionAdvancedSettings {
+    margin-inline-start: 15px !important;
+  }
+  #historyPane:not([selectedIndex="1"]) > #historyDontRememberPane,
+  #historyPane:not([selectedIndex="2"]) > #historyCustomPane,
+  #weavePrefsDeck:not([selectedIndex="1"]) > #hasFxaAccount,
+  #fxaLoginStatus:not([selectedIndex="1"]) > #fxaLoginUnverified,
+  #fxaLoginStatus:not([selectedIndex="2"]) > #fxaLoginRejected {
+    visibility: collapse !important;
+  }
+  description > checkbox {
+    vertical-align: middle !important;
+  }
+  #weavePrefsDeck > vbox > label,
+  #weavePrefsDeck > vbox > groupbox,
+  #weavePrefsDeck > vbox > description,
+  #weavePrefsDeck > #hasFxaAccount > vbox > label,
+  #weavePrefsDeck > #hasFxaAccount > hbox > label {
+/* no margin-inline-start for elements at the beginning of a line */
+    margin-inline-start: 0 !important;
+  }
+  groupbox {
+/* Give more available space for displaying tooltip on scrollable groupbox */
+    margin-top: 15px !important;
+  }
+  #tabsElement {
+    margin-inline-end: 4px !important; /* add the 4px end-margin of other elements */
+  }
+  .indent {
+/* needed to override margin-inline-start:0 $i; rule
+		 define in common.css for labels */
+    margin-inline-start: 33px !important;
+  }
+  .text-link {
+    margin-bottom: 0 !important;
+  }
+  #showUpdateHistory {
+    margin-inline-start: 0 !important;
+  }
+  #defaultFontType,
+  #serif,
+  #sans-serif,
+  #monospace {
+    min-width: 30ch !important;
+  }
+  #fxaProfileImage {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    list-style-image: url("../icons/browser/fxa/default-avatar.svg") !important;
+    margin-inline-end: 15px !important;
+    image-rendering: auto !important;
+    border: 1px solid transparent !important;
+  }
+  #fxaLoginStatus[hasName] #fxaProfileImage {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  #fxaProfileImage.actionable {
+    cursor: pointer !important;
+  }
+  #fxaProfileImage.actionable:hover {
+    border-color: #0095dd !important;
+  }
+  #fxaProfileImage.actionable:hover:active {
+    border-color: #ff9500 !important;
+  }
+  #noFxaAccount {
+    padding-top: 15px !important;
+  }
+  #fxaContentWrapper {
+    flex-flex: 1 !important;
+  }
+  #noFxaGroup {
+    flex-flex: 1 !important;
+    margin: 0 !important;
+  }
+  #fxaContentWrapper {
+    padding-right: 15px !important;
+  }
+  #noFxaGroup > vbox,
+  #fxaGroup {
+    flex-align: start !important;
+  }
+  #fxaSyncEngines > vbox:first-child {
+    margin-right: 80px !important;
+  }
+  #fxaSyncComputerName {
+    margin-inline-start: 0px !important;
+    flex-flex: 1 !important;
+  }
+  #tosPP-small-ToS {
+    margin-bottom: 14px !important;
+  }
+  #noFxaCaption {
+    font-weight: bold !important;
+    margin-bottom: 11px !important;
+  }
+  .fxaSyncIllustration {
+    list-style-image: url("../icons/chrome/browser/fxa/sync-illustration.svg") !important !important;
+    -moz-context-properties: fill !important;
+    fill: #bfcbd3 !important;
+    margin-top: 35px !important;
+    width: 231px !important;
+  }
+  #syncOptions caption {
+    margin-bottom: 11px !important;
+  }
+  #fxaDeviceName {
+    margin-bottom: 27.5px !important;
+  }
+  #noFxaDescription {
+    margin-bottom: 20px !important;
+  }
+  .separator {
+    border-bottom: 1px solid var(--in-content-header-border-color) !important;
+  }
+  .fxaAccountBox {
+    border: 1px solid #d1d2d3 !important;
+    border-radius: 5px !important;
+    padding: 14px 20px 14px 14px !important;
+  }
+  #signedOutAccountBoxTitle {
+    font-weight: bold !important;
+  }
+  .fxaAccountBoxButtons {
+    margin-bottom: 0 !important;
+    margin-top: 11px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .fxaAccountBoxButtons > * {
+    flex-flex: 1 !important;
+  }
+  .fxaAccountBoxButtons > button {
+    text-align: center !important;
+    padding-left: 11px !important;
+    padding-right: 11px !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+  }
+  .fxaAccountBoxButtons > button:first-child {
+    margin-inline-end: 14px !important;
+  }
+  #verifiedManage:visited {
+    color: var(--in-content-link-color) !important;
+  }
+  #fxaLoginStatus[hasName] #fxaEmailAddress1 {
+    font-size: 1.1rem !important;
+  }
+  #fxaEmailAddress1,
+  #fxaEmailAddress2,
+  #fxaEmailAddress3 {
+    word-break: break-all !important;
+  }
+  .fxaFirefoxLogo {
+    list-style-image: url("../icons/browser/fxa/logo.png") !important;
+    width: 64px !important;
+    height: 64px !important;
+    margin-inline-end: 14px !important;
+  }
+  .fxaMobilePromo {
+    line-height: 28px !important;
+    margin-bottom: 20px !important;
+    margin-top: 25px !important;
+  }
+  #fxaLoginRejectedWarning {
+    list-style-image: url("../icons/browser/warning.svg") !important;
+    filter: drop-shadow(0 1px 0 rgba(13,27,38,0.15)) !important;
+    margin: 4px 8px 0px 0px !important;
+  }
+  #syncOptions {
+    margin-bottom: 27.5px !important;
+  }
+  .androidLink {
+    list-style-image: url("../icons/browser/fxa/android.png") !important;
+  }
+  .iOSLink {
+    list-style-image: url("../icons/browser/fxa/ios.png") !important;
+  }
+  .androidLink,
+  .iOSLink {
+    vertical-align: bottom !important;
+    padding: 0 5px !important;
+    height: 28px !important;
+  }
+  #tosPP-small {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  }
+@media (min-resolution: 1.1dppx) {
+    .androidLink {
+      list-style-image: url("../icons/browser/fxa/android@2x.png") !important;
+    }
+    .iOSLink {
+      list-style-image: url("../icons/browser/fxa/ios@2x.png") !important;
+    }
+    .fxaFirefoxLogo {
+      list-style-image: url("../icons/browser/fxa/logo@2x.png") !important;
+    }
+}
+  #updateDeck > hbox > label {
+    margin-inline-end: 5px false !important;
+  }
+  .update-throbber {
+    width: 16px !important;
+    min-height: 16px !important;
+    margin-inline-end: 3px !important;
+    list-style-image: url("../icons/content/icons/loading.png") !important;
+  }
+@media (min-resolution: 1.1dppx) {
+    .update-throbber {
+      list-style-image: url("../icons/content/icons/loading@2x.png") !important;
+    }
+}
+  .search-container {
+    position: sticky !important;
+    background-color: var(--in-content-page-background) !important;
+    width: 100% !important;
+    top: 0 !important;
+    z-index: 1 !important;
+  }
+  #searchInput {
+    width: 230px !important;
+    margin: 20px 0 !important;
+  }
+  #searchInput .textbox-search-icons:not([selectedIndex="1"]) {
+    display: none !important;
+  }
+  .search-tooltip {
+    font-size: 1.25rem !important;
+    position: absolute !important;
+    padding: 0 10px !important;
+    background-color: #ffe900 !important;
+    border: 1px solid #d7b600 !important;
+    user-select: none !important;
+    bottom: 35px !important;
+  }
+  .search-tooltip:hover,
+  .search-tooltip:hover::before {
+    opacity: 0.1 !important;
+  }
+  .search-tooltip::before {
+    position: absolute !important;
+    content: "" !important;
+    border: 7px solid transparent !important;
+    border-top-color: #d7b600 !important;
+    top: 100% !important;
+    offset-inline-start: calc(50% - 7px) !important;
+  }
+  .search-tooltip::after {
+    position: absolute !important;
+    content: "" !important;
+    border: 6px solid transparent !important;
+    border-top-color: #ffe900 !important;
+    top: 100% !important;
+    offset-inline-start: calc(50% - 6px) !important;
+  }
+  .search-tooltip-parent {
+    position: relative !important;
+  }
+
+	menulist[indicator=true] > menupopup menuitem:not([image]) > .menu-iconic-left {
+		display: flex !important;
+		min-width: auto !important; /* Override the min-width defined in menu.css */
+		margin-inline-end: 6px !important;
+	}
+
+	menulist[indicator=true] > menupopup menuitem:not([image]) > .menu-iconic-left > .menu-iconic-icon {
+		width: 8px !important;
+		height: 10px !important;
+		margin: 0 !important;
+	}
+
+	menulist[indicator=true] > menupopup menuitem[indicator=true]:not([image]) > .menu-iconic-left > .menu-iconic-icon {
+		list-style-image: url(../icons/browser/preferences/in-content-new/search-arrow-indicator.svg) !important;
+	}
+
+	menulist[indicator=true] > menupopup menuitem[indicator=true]:not([image]) > .menu-iconic-left > .menu-iconic-icon:-moz-locale-dir(rtl) {
+		transform: scaleX(-1) !important;
+	}
+  .menu-iconic-highlightable-text {
+    margin: 0 !important; /* Align with the margin of xul:label.menu-iconic-text */
+  }
+  .treecol-sortdirection {
+/* override the Linux only toolkit rule */
+    appearance: none !important;
+  }
+  .actionsMenu {
+    font-family: "Clear Sans", sans-serif !important;
+    font-size: 1.25rem !important;
+    line-height: 22px !important;
+  }
+  .actionsMenu > .menulist-label-box > .menulist-icon {
+    margin-top: 1px !important;
+    margin-inline-start: 1px !important;
+    margin-inline-end: 6px !important;
+  }
+  .actionsMenu > .menulist-label-box > .menulist-label {
+    margin-top: 2px !important;
+  }
+  #fxaProfileImage {
+    user-focus: normal !important;
+  }
+  menulist.actionsMenu > .menulist-dropmarker {
+    margin-top: 11px !important;
+    margin-bottom: 11px !important;
+  }
+  textbox + button,
+  filefield + button {
+    margin-inline-start: -4px !important;
+  }
+  #updateSettingsContainer {
+    background-color: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+}

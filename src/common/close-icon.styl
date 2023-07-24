@@ -1,0 +1,18 @@
+.close-icon {
+  appearance: none $i;
+  height: 16px $i;
+  width: 16px $i;
+	// TODO: replace -moz-image-rect
+  background-image: -moz-image-rect(url("../icons/content/global/icons/close.svg"), 0, 16, 16, 0) $i;
+  background-position: center $i;
+  background-repeat: no-repeat $i;
+	list-style-image: none $i;
+
+	&:hover {
+		background-image: -moz-image-rect(url("../icons/content/global/icons/close.svg"), 0, 32, 16, 16) $i;
+
+		&:active {
+			background-image: -moz-image-rect(url("../icons/content/global/icons/close.svg"), 0, 48, 16, 32) $i;
+		}
+	}
+}
